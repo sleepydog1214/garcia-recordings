@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} - Transcript</title>
+</head>
+<body>
+    <p><a href="{{ url_for('index') }}">&larr; Back to list</a></p>
+    <h1>{{ name }}</h1>
+
+    {% if has_audio %}
+        <h2>Audio</h2>
+        <audio controls preload="none">
+            <source src="{{ url_for('audio', name=name) }}" type="audio/wav">
+            Your browser does not support audio playback.
+        </audio>
+        <p>
+            <a href="{{ url_for('download_audio', name=name) }}">Download audio</a>
+        </p>
+    {% else %}
+        <p>No audio file found for this clip.</p>
+    {% endif %}
+
+    <p>
+        <a href="{{ url_for('download_transcript', name=name) }}">Download transcript</a>
+        |
+        <a href="{{ url_for('notes', name=name) }}">Family notes / corrections</a>
+    </p>
+
+    <h2>Summary</h2>
+    <pre>{{ transcript_text }}</pre>
+</body>
+</html>

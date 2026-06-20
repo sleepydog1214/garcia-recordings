@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garcia Family History</title>
+</head>
+<body>
+    <h1>Garcia Family History</h1>
+    <p>Interview clips and formatted transcripts.</p>
+
+    {% if names %}
+        <ul>
+            {% for name in names %}
+                <li>
+                    <a href="{{ url_for('transcript', name=name) }}">{{ name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No transcripts found in <code>formatted-transcripts/</code>.</p>
+    {% endif %}
+</body>
+</html>
